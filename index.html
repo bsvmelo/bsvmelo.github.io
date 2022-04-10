@@ -1,8 +1,169 @@
-<!DOCTYPE html>
 <html>
+
+<!--
+    
+    Note to Students:
+
+        This is a very short introduction to using Javascript in the browser.
+
+        To see this as a webpage, you have to start a *Local Web Server*. There are many ways to do this: since you all have python installed, we will use python.
+
+        - Open terminal
+
+        - 'cd' into the directory where this html file is (js_in_webpage.html)
+
+        - Type the following into the terminal and hit 'enter':
+            
+            ### IN PYTHON 2 ### 
+            python -m SimpleHTTPServer
+            
+            ### IN PYTHON 3 ### 
+            python -m http.server 
+
+            your server should read something like: Serving HTTP on 0.0.0.0 port 8000 ...
+
+        - now go to any browser and type in the HTTP address and the filename: something like:
+
+            http://0.0.0.0:8000/js_in_webpage.html
+
+            or
+
+            http://localhost:8000/js_in_webpage.html
+        
+        - Congrats: you now have a local HTTP server running. Now, every time you change this file and save it, when you reload the browser you will see your changes!
+-->
+
+<head><title>Howework 5 - DATA 608 - Spring 2022</title></head>
+
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages $$$$$$</p>
+
+<h1>Howework 5 - DATA 608 - Spring 202</h1>
+<h2>Bruno de Melo</h2>
+<p></p>
+<h2>Question 1</h2>
+
+<script type="text/javascript">
+
+// Here are some examples of things that you might want to do with Javascript
+
+// writing to a document directly
+
+document.write('<p><b>Create a function to reverse any word that you type in</b></p>');
+</script>
+
+
+<script type="text/javascript">
+
+document.write('<br>Type a word in the text box below.')
+
+// Basic functions  // <input type="button" value="Get 20 first multiples!" oninput="calc1();">  <input type="button" value="Reverse It!" oninput="calc();">
+
+//    tt.innerHTML = getMultiples(document.getElementById('num1').value)
+
+//    var tt = document.getElementById("target1");
+//    tt.innerHTML = getMultiples(document.getElementById('num1').value)
+
+
+function reverseStr(str){
+    
+    var dtext; 
+    dtext = str.split("").reverse().join("");
+    return(dtext);
+};
+
+function calc(){
+    var t = document.getElementById("target");
+    t.innerHTML = reverseStr(document.getElementById('num').value)
+}
+
+
+</script>
+
+<p>
+<form>
+    <input id="num" type="text" size="15" placeholder = "Enter a word..." oninput="calc();">
+    
+</form>
+</p>
+
+<div id="target"></div>
+
+<p></p>
+
+<h2>Question 2</h2>
+<script type="text/javascript">
+document.write('<p><b>Write a function that takes an input number, and prints a table with the first 20 multiples of the number, in order 5x4</b></p>');
+</script>
+
+
+
+
+<script type="text/javascript">
+
+document.write('<br>Type a number in the text box below.')
+
+        
+function getMultiples(n){
+    const arr = []
+    for(let x = 1; x <= 20; x++) 
+        arr.push(x*n)
+    return arr    
+};
+
+//function calc1(){
+    
+//    var tt = document.getElementById("target1");
+//    tt.innerHTML = getMultiples(document.getElementById('num1').value);
+    
+    //var orderArray = document.getElementById("target2");
+    //var orderArray = 0;
+   //  var orderArray =  getMultiples(document.getElementById('num1').value);
+    //orderArray.innerHTML = getMultiples(document.getElementById('num1').value);
+    
+//    var fetch = document.getElementById('fetch');
+//        
+//        for(var i=0; i<array.length; i++){
+//            for(var j=0; j<array[i].length; j++){
+//                cell.innerHTML = array[i][j];
+//            }
+//        }
+
+
+    
+    
+//};
+function Insert_Data(){    
+        var orderArray =  getMultiples(document.getElementById('num1').value);
+        // sourced from: https://code-boxx.com/create-table-from-array-javascript/
+        var myTable = "<table><tr>";
+        var perrow = 5; // 2 CELLS PER ROW
+        orderArray.forEach((value, i) => {
+
+          myTable += `<td>${value}</td>`;
+         
+          // BREAK INTO NEXT ROW
+          var next = i + 1;
+          if (next%perrow==0 && next!=orderArray.length) { myTable += "</tr><tr>"; }
+        });
+        
+        // (C3) CLOSE THE TABLE STRING
+        myTable += "</tr></table>";
+         
+        // (D) ATTACH HTML TO CONTAINER
+        document.getElementById("container").innerHTML = myTable;
+}
+    
+ 
+// <input id="num1" type="number" placeholder = "Enter a number..." size="15" oninput="Insert_Data();">  <input type="button" value="Click me" onClick="Insert_Data();">
+</script>
+
+<p>
+<form>
+    <input id="num1" type="text" placeholder = "Enter a number..." size="15" oninput="Insert_Data();">
+</form>
+</p>
+<div id="target1"></div>
+<div id="container"></div>
 
 </body>
 </html>
